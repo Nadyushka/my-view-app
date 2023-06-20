@@ -1,7 +1,7 @@
 <template>
   <div class="app">
-    <post-form/>
-    <post-list/>
+    <post-form @create="addPost"/>
+    <post-list :posts="posts" @remove="removeItem"/>
   </div>
 </template>
 
@@ -18,16 +18,14 @@ export default {
         {id: 2, title: 'title 2', body: 'description'},
         {id: 3, title: 'title 3', body: 'description'},
       ],
-      title: '',
-      body: ''
     }
   },
   methods: {
-    addPost() {
-      const newPost = {id: Date.now(), title: this.title, body: this.body}
-      this.posts.push(newPost)
-      this.title = ''
-      this.body = ''
+    addPost(post) {
+      this.posts.push(post)
+    },
+    removeItem(post){
+      this.posts = this.posts.filter(p=> p.id !== post.id)
     }
   }
 }

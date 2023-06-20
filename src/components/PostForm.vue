@@ -1,36 +1,39 @@
-<script setup>
-
+<script>
+export default {
+  data() {
+    return {
+      post: {
+        title: '',
+        body: ''
+      }
+    }
+  },
+  methods: {
+    createPosts() {
+      this.post.id = Date.now()
+      this.$emit('create', this.post)
+      this.post = {
+        title: '',
+        body: ''
+      }
+    }
+  }
+}
 </script>
 
 <template>
   <form @submit.prevent>
-    <input v-bind:value="title"
-           @input="title = $event.target.value "
-           class="input"
-           type="text"
-           placeholder="add title"/>
-    <input v-bind:value="body" @input="body = $event.target.value " class="input" type="text"
-           placeholder="add body"/>
-    <button @click="addPost" class="btn">Submit</button>
+    <my-input
+        v-model="post.title"
+        placeholder="add title"/>
+    <my-input
+        v-bind:value="post.body"
+        @input="post.body = $event.target.value"
+        placeholder="add body"/>
+    <my-button @click="createPosts" class="btn">Submit</my-button>
   </form>
 </template>
 
 <style scoped>
-
-.input {
-  margin-top: 15px;
-  border: 1px solid teal;
-  width: 100%;
-  padding: 10px 15px;
-}
-
-.btn {
-  align-self: flex-end;
-  padding: 10px 15px;
-  background: none;
-  color: teal;
-  border: 1px solid teal;
-  margin-top: 10px;
-}
 
 </style>

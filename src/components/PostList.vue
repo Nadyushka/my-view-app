@@ -1,18 +1,31 @@
-<script setup>
+<script>
+import PostItem from "@/components/PostItem.vue";
+
+export default {
+  components: {PostItem},
+  props: {
+    posts: {
+      type: Array,
+      required: true
+    }
+  }
+}
 
 </script>
 
 <template>
-  <div class="post" v-for="post in posts" v-bind:key="post.id">
-    <div>{{ post.title }}</div>
-    <div>{{ post.body }}</div>
+  <div v-if="posts.length > 0">
+    <h3>Users list</h3>
+    <post-item
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
+        @remove="$emit('remove', post)"
+    />
   </div>
+  <h3 v-else style="color:red">There are no posts</h3>
 </template>
 
 <style scoped>
-.post {
-  padding: 15px;
-  margin-top: 15px;
-  border: 2px solid teal;
-}
+
 </style>
