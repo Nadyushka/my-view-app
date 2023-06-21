@@ -24,7 +24,7 @@ export default {
 <template>
   <form @submit.prevent>
     <my-input
-        v-model="post.title"
+        v-model.trim="post.title"
         placeholder="add title"/>
     <my-input
         v-bind:value="post.body"

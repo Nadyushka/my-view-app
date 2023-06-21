@@ -1,5 +1,14 @@
-<script>
+<template>
+  <input
+      :value="modelValue"
+      @input="updateInput"
+      type="text"
+      class="input"
 
+  />
+</template>
+
+<script>
 export default ({
   name: "my-input",
   props: {
@@ -13,15 +22,6 @@ export default ({
 })
 </script>
 
-
-<template>
-  <input
-      @input="updateInput"
-      type="text"
-      class="input"
-      :value="modelValue"
-  />
-</template>
 
 <style scoped>
 .input {
