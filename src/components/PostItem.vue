@@ -17,8 +17,8 @@ export default {
 <template>
   <div class="post">
     <div>
-      <div>{{ post.title }}</div>
-      <div>{{ post.body }}</div>
+      <div><strong>Title:</strong> {{ post.title }}</div>
+      <div><strong>Body:</strong> {{ post.body }}</div>
     </div>
     <div>
       <my-button @click="deletePost">Delete</my-button>
