@@ -25,7 +25,9 @@ export default {
   <form @submit.prevent>
     <my-input
         v-model.trim="post.title"
-        placeholder="add title"/>
+        placeholder="add title"
+        v-focus
+    />
     <my-input
         v-bind:value="post.body"
         @input="post.body = $event.target.value"

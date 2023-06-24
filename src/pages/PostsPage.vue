@@ -18,7 +18,9 @@
         v-if="!isPostsLoading"/>
 
     <div v-if="isPostsLoading">Posts are loading...</div>
-    <div ref="observer" class="observer"></div>
+    <div v-intersection="loadMorePosts"
+
+         class="observer"></div>
 
     <!--    Pagination-->
     <!--    <div class="page__wrapper">-->
@@ -108,18 +110,18 @@ export default {
   mounted() {
     this.getPosts()
 
-    const options = {
-      rootMargin: "0px",
-      threshold: 1.0,
-    }
-    // eslint-disable-next-line no-unused-vars
-    const callback = (entries, observer) => {
-      if (entries[0].isIntersecting && this.page < this.totalPage) {
-        this.loadMorePosts()
-      }
-    }
-    const observer = new IntersectionObserver(callback, options)
-    observer.observe(this.$refs.observer)
+    // const options = {
+    //   rootMargin: "0px",
+    //   threshold: 1.0,
+    // }
+    // // eslint-disable-next-line no-unused-vars
+    // const callback = (entries, observer) => {
+    //   if (entries[0].isIntersecting && this.page < this.totalPage) {
+    //     this.loadMorePosts()
+    //   }
+    // }
+    // const observer = new IntersectionObserver(callback, options)
+    // observer.observe(this.$refs.observer)
   },
   watch: {
     // selectedSort(newValue) {
